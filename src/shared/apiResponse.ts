@@ -4,13 +4,14 @@ type iApiReponse<T> = {
   success: boolean
   statusCode: number
   message: string
+  token?: string
   meta?: {
     page?: number
     size?: number
     total?: number
     totalPage?: number
   }
-  data: T | null
+  data?: T | null
 }
 
 const apiResponse = <T>(res: Response, data: iApiReponse<T>): void => {
@@ -18,6 +19,7 @@ const apiResponse = <T>(res: Response, data: iApiReponse<T>): void => {
     success: data.success,
     statusCode: data.statusCode,
     message: data.message,
+    token: data?.token,
     data: data.data,
     meta: data?.meta && {
       page: data?.meta?.page,

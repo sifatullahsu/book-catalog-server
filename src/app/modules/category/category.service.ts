@@ -23,6 +23,9 @@ const getData = async (id: string): Promise<iType | null> => {
   const result = await prisma.category.findUnique({
     where: {
       id
+    },
+    include: {
+      books: true
     }
   })
 

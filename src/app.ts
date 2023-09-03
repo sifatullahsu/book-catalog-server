@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/', AppRouter)
+app.use('/api/v1', AppRouter)
 
 export default app
 

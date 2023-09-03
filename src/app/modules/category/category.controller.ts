@@ -4,15 +4,13 @@ import apiResponse from '../../../shared/apiResponse'
 import catchAsync from '../../../shared/catchAsync'
 import { CategoryService as service } from './category.service'
 
-const module = 'Category'
-
 const createData = catchAsync(async (req: Request, res: Response) => {
   const result = await service.createData(req.body)
 
   apiResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: `${module} created successfully.`,
+    message: `Category created successfully.`,
     data: result
   })
 })
@@ -23,7 +21,7 @@ const getAllData = catchAsync(async (req: Request, res: Response) => {
   apiResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: `${module} fetch successfully.`,
+    message: `Categories fetched successfully.`,
     data: result
   })
 })
@@ -34,7 +32,7 @@ const getData = catchAsync(async (req: Request, res: Response) => {
   apiResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: `${module} fetch successfully.`,
+    message: `Category fetched successfully.`,
     data: result
   })
 })
@@ -45,7 +43,7 @@ const updateData = catchAsync(async (req: Request, res: Response) => {
   apiResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: `${module} update successfully.`,
+    message: `Category updated successfully.`,
     data: result
   })
 })
@@ -56,7 +54,7 @@ const deleteData = catchAsync(async (req: Request, res: Response) => {
   apiResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: `${module} delete successfully.`,
+    message: `Category deleted successfully.`,
     data: result
   })
 })

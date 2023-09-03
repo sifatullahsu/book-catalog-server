@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm dist/server.js",
     "build": "tsc",
-    "dev": "nodemon src/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "lint:fix": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "prettier:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "lint-prettier": "yarn lint:fix && yarn prettier:fix"
@@ -39,6 +39,7 @@
     "prettier": "^3.0.3",
     "prisma": "^5.2.0",
     "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
   }
 }

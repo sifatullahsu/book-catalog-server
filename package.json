@@ -9,7 +9,8 @@
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "lint:fix": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "prettier:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "lint-prettier": "yarn lint:fix && yarn prettier:fix"
+    "lint-prettier": "yarn lint:fix && yarn prettier:fix",
+    "postinstall": "prisma generate"
   },
   "lint-staged": {
     "src/**/*.ts": "yarn lint-prettier"

@@ -60,7 +60,7 @@ const deleteData = catchAsync(async (req: Request, res: Response) => {
 })
 
 const getProfile = catchAsync(async (req: Request, res: Response) => {
-  const result = await service.getData(req?.user?.userId)
+  const result = await service.getData(req?.user?.userId as string)
 
   apiResponse(res, {
     statusCode: httpStatus.OK,

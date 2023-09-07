@@ -1,7 +1,10 @@
 import { Request, Response } from 'express'
 import httpStatus from 'http-status'
+import { paginationFields } from '../../../helpers/paginationHelper'
 import apiResponse from '../../../shared/apiResponse'
 import catchAsync from '../../../shared/catchAsync'
+import queryPicker from '../../../shared/queryPicker'
+import { bookFilters } from './book.constant'
 import { BookService as service } from './book.service'
 
 const createData = catchAsync(async (req: Request, res: Response) => {
@@ -16,13 +19,16 @@ const createData = catchAsync(async (req: Request, res: Response) => {
 })
 
 const getAllData = catchAsync(async (req: Request, res: Response) => {
-  const result = await service.getAllData()
+  const filters = queryPicker(req.query, bookFilters)
+  const pagination = queryPicker(req.query, paginationFields)
+  const result = await service.getAllData(filters, pagination)
 
   apiResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: `Books fetched successfully.`,
-    data: result
+    meta: result.meta,
+    data: result.data
   })
 })
 
@@ -60,13 +66,15 @@ const deleteData = catchAsync(async (req: Request, res: Response) => {
 })
 
 const getAllDataByCategoryId = catchAsync(async (req: Request, res: Response) => {
-  const result = await service.getAllDataByCategoryId(req.params.categoryId)
+  const pagination = queryPicker(req.query, paginationFields)
+  const result = await service.getAllDataByCategoryId(req.params.categoryId, pagination)
 
   apiResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: `Books with associated category data fetched successfully`,
-    data: result
+    meta: result.meta,
+    data: result.data
   })
 })
 
